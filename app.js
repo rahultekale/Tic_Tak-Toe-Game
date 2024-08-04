@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     boxes.forEach((box) => {
         box.addEventListener("click", () => {
+            if (box.disabled) return;
+
             if (turnO) {
                 box.innerHTML = "O";
                 box.setAttribute("data-player", "Player 1");
@@ -29,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 box.setAttribute("data-player", "Player 2");
                 turnO = true;
             }
-            box.ariaDisabled = true;
+            box.disabled = true;
 
             checkwinner();
         });
@@ -83,6 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
         resetbtn.addEventListener("click", confirmReset);
     }
     if (newgamebtn) {
-        newgamebtn.addEventListener("click", confirmReset);
+        newgamebtn.addEventListener("click", resetgame);
     }
 });
